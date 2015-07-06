@@ -1,6 +1,6 @@
 ## Repository for my [Hackerrank](http://www.hackerrank.com) account
 
-### Programming languages:
+#### Programming languages:
 * Python 3.4
 * Python 2.7
 
