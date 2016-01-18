@@ -1,24 +1,14 @@
 #!/usr/bin/env python
 
 
-def gcd(*numbers):
-    from fractions import gcd
-    return reduce(gcd, numbers)
-
-
-def lcm(*numbers):
-    def lcm(a, b):
-        return (a * b) // gcd(a, b)
-    return reduce(lcm, numbers, 1)
-
-
 def countUneatenLeaves(N, A):
-    alone = [N//a for a in A]
-    together = N//lcm(*A)
-    pairs = [0]*len(A)
-    for i in range(-1, len(A) - 1):
-        pairs[i + 1] = N//lcm(A[i], A[i + 1])
-    return N - (sum(alone) + together - sum(pairs))
+    jumps = set()
+    for a in sorted(A):
+        if any([not a % j for j in jumps]):
+            continue
+        jumps.add(a)
+    eaten = sum([len(xrange(j, N, j)) for j in jumps])
+    return N - 1 - eaten
 
 
-print countUneatenLeaves(10, [2, 5, 4])
+print countUneatenLeaves(10, [2, 4, 5])
