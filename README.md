@@ -3,5 +3,6 @@
 #### Programming languages:
 * Python 3.4
 * Python 2.7
+* Haskell
 
 ##### My handle is [@andriy](https://www.hackerrank.com/andriy)
