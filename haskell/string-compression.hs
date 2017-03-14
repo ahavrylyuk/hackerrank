@@ -1,13 +1,11 @@
-compress s = comp "" ' ' 0 s
-  where
-    comp :: [Char] -> Char -> Int -> [Char] -> [Char]
-    comp res ch n []
-      | n > 0 = res ++ show (n + 1)
-      | otherwise = res
-    comp res ch n (x:xs)
-      | x == ch = comp res x (n + 1) xs
-      | x /= ch && n > 0 = comp (res ++ (show (n + 1)) ++ [x]) x 0 xs
-      | otherwise = comp (res ++ [x]) x 0 xs
+compress s = comp s 1
+  where 
+    comp [] n = []
+    comp [x] n = if n > 1 then x:show n else [x]
+    comp (x:y:xs) n
+      | x == y = comp (x:xs) (n + 1)
+      | x /= y && n > 1 = x:show n ++ comp (y:xs) 1
+      | otherwise = x:comp (y:xs) 1
 
 main = do
   line <- getLine
