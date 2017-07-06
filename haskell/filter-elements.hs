@@ -1,6 +1,7 @@
 import Control.Monad
 
-filter' k arr = arr
+filter' _ [] = [-1]
+filter' _ (_:xs) = xs
 
 main = do
   n <- readLn :: IO Int
@@ -9,5 +10,5 @@ main = do
     arrLine <- getLine
     let k = read (words line !! 1) :: Int
     let arr = map (\x -> read x :: Int) (words arrLine)
-    putStrLn $ unwords (map (show) (filter' k arr))
+    putStrLn $ unwords (map show (filter' k arr))
 

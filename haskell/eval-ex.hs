@@ -3,7 +3,7 @@ import System.IO
 import Text.Printf
 
 fac = product . flip take [1..]
-solve x = 1 + sum (map (\t -> x ** fromIntegral t / fac(t)) [1..9]) 
+solve x = 1 + sum (map (\t -> x ** fromIntegral t / fac t) [1..9]) 
 
 main :: IO ()
 main = do

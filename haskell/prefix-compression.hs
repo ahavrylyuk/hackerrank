@@ -1,7 +1,7 @@
 prefix [] _ = ""
-prefix _ [] = ""   
+prefix _ [] = ""
 prefix (x:xs) (y:ys)
-  | x == y = x:prefix xs ys 
+  | x == y = x:prefix xs ys
   | otherwise = ""
 
 compress x y =

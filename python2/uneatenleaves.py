@@ -2,10 +2,11 @@
 
 
 def countUneatenLeaves(N, A):
-    eaten = set()
-    for a in A:
-        eaten = eaten.union(xrange(a, N, a))
-    return N - 1 - len(eaten)
+    leaves = [0]*N
+    for i in xrange(1, N):
+        for a in A:
+            if i % a is 0:
+                leaves[i] = 1
+    return N - 1 - sum(leaves)
 
-
-print countUneatenLeaves(10, [2, 4, 5])
+print countUneatenLeaves(10**8, [2, 4, 5])
