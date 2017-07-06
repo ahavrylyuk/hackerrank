@@ -1,11 +1,19 @@
-selections [] = [[]]
-selections (x:xs) = selections xs ++ map (x:) (selections xs)
+selections _ [] = [[]]
+selections target (x:xs) =
+  sel ++ map (x:) sel
+  where sel = selections target xs
 
-withSumOf target = filter (\xs -> sum xs == target)
+sumsTo = sumsTo' 0
+  where
+    sumsTo' _ _ [] = False
+    sumsTo' s target (x:xs)
+      | null xs && s' == target = True
+      | s' > target = False
+      | otherwise = sumsTo' s' target xs
+      where s' = s + x
 
 powersOf n x = takeWhile (<=x) $ map (^n) [1..]
-
-sumOfPowers x n = withSumOf x $ selections $ powersOf n x
+sumOfPowers x n = filter (sumsTo x) $ selections x $ powersOf n x
 
 main = do
  x <- readLn :: IO Int
